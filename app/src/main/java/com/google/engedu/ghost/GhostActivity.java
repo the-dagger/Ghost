@@ -104,9 +104,10 @@ public class GhostActivity extends AppCompatActivity {
         }
         else {
             if(dictionary.getAnyWordStartingWith(fragment) == null){
-                label.setText("Computer Challenged");
                 Log.e("Challenged User","True");
-                challenge(getCurrentFocus());
+                text.setText("No more words can be formed");
+                label.setText("Computer Wins");
+                return;
             }
             else if(dictionary.getAnyWordStartingWith(fragment) != null){
                 fragment = fragment + dictionary.getAnyWordStartingWith(fragment).substring(0,1);
