@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -89,8 +88,18 @@ public class GhostActivity extends AppCompatActivity {
 
     private void computerTurn() {
 
+        Log.e("fragment",fragment);
+
+        if(dictionary.getGoodWordStartingWith(fragment) == null){
+            Log.e("Challenged User","True");
+            text.setText("No more words can be formed");
+            label.setText("Computer Wins");
+            return;
+        }
         if(fragment.length() < 4){
-            char c = (char)(random.nextInt(26)+97);
+            String c = dictionary.getGoodWordStartingWith(fragment);
+            c = c.substring(fragment.length(),fragment.length()+1);
+            Log.e("C",c);
             fragment = fragment + c;
             text.setText(fragment);
             userTurn = true;
